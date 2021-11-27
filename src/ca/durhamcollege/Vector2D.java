@@ -1,9 +1,19 @@
 package ca.durhamcollege;
+/*
+ *  @title Vector2D.java
+ *  @course OOP3200 - F2021 - Lesson 11
+ *  @author Tom Tsiliopoulos
+ *  @author Taylor Bazouzi
+ *
+ *
+ *
+ */
 
 import java.util.Vector;
 
 public class Vector2D
 {
+    public static Vector2D zero;
     // PRIVATE INSTANCE VARIABLES
     private float x;
     private float y;
@@ -29,12 +39,13 @@ public class Vector2D
         this.y = y;
     }
 
+    // set function that takes care of everything
     public void set(final float x, final float y)
     {
         this.x = x;
         this.y = y;
     }
-
+    // set function that takes care of everything
     public void set(final Vector2D vector)
     {
         this.x = vector.x;
@@ -42,25 +53,28 @@ public class Vector2D
     }
 
     // CONSTRUCTORS
-    Vector2D()
+
+    Vector2D()  // if no parameters set  x and y to 0
     {
-        set(Vector2D.zero());
+        set(Vector2D.zero());   // takes place of default values in a constructor function
+        //this.x= 0;
+        //this.y = 0;
     }
 
     Vector2D(final float x, final float y)
     {
-        set(x, y);
+        set(x, y); // calls set function
     }
 
+    // get a vector 2d and pass in another vector 2d
     Vector2D(final Vector2D vector)
     {
-        set(vector.getX(), vector.getY());
+        set(vector.getX(), vector.getY()); // get stuff from vector and pass it into the function
     }
 
     // PRIVATE METHODS
 
     // PUBLIC METHODS
-
     public void add(final Vector2D rhs)
     {
         this.setX(this.getX() + rhs.getX());
@@ -71,6 +85,7 @@ public class Vector2D
     {
         this.setX(this.getX() - rhs.getX());
         this.setY(this.getY() - rhs.getY());
+        //set(getX() - rhs.getX(), getY() - rhs.getY());
     }
 
     public void multiply(final Vector2D rhs)
@@ -90,6 +105,8 @@ public class Vector2D
         return ((getX() == rhs.getX()) && (getY() == rhs.getY()));
     }
 
+
+    // Utility functions
     public float getMagnitude()
     {
         return (float)(Math.sqrt(this.getX() * this.getX() + this.getY() * this.getY()));
@@ -105,12 +122,15 @@ public class Vector2D
         this.set(this.getX() * scale, this.getY() * scale);
     }
 
-    public void setScale(final Vector2D scale)
+    // overloaded method to scale up x or y
+    public void setScale(final Vector2D scale)  // final makes it type safe, we are using them not modifying them
     {
         this.set(this.getX() * scale.x, this.getY() * scale.y);
     }
 
-    public void normalize()
+
+    // changes a vectors range between 0 and 1
+    public void normalize() //modifies the actual object
     {
         final var magnitude = this.getMagnitude();
         if ((double)(magnitude) > 9.99999974737875E-06)
@@ -123,7 +143,8 @@ public class Vector2D
         }
     }
 
-    public Vector2D getNormalized()
+
+    public Vector2D getNormalized() // returns what vector would be if it was normalized
     {
         Vector2D vector = new Vector2D(getX(), getY());
         vector.normalize();
