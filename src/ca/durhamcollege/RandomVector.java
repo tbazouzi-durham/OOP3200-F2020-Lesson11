@@ -36,15 +36,15 @@ public class RandomVector
     {
         //Random rand = new Random();// instance of the random class --> see singleton method above
 
-        // generate random X value between minX and maxX
-        float minX = Math.min(start.getX(), end.getX()); // cant access x and y directly so we use getX getY
+        // generate random Y value
+        float minX = Math.min(start.getX(), end.getX());
         float maxX = Math.max(start.getX(), end.getX());
-        float randomX = (m_rand.nextFloat() * (maxX) + minX);
+        float randomX = (m_rand.nextFloat() * (maxX - minX)) + minX;
 
-        // generate random Y value between minY and maxY
+        // generate random X value
         float minY = Math.min(start.getY(), end.getY());
         float maxY = Math.max(start.getY(), end.getY());
-        float randomY = (m_rand.nextFloat() * (maxY) + minY);
+        float randomY = (m_rand.nextFloat() * (maxY - minY)) + minY;
 
         return new Vector2D(randomX, randomY);
     }
