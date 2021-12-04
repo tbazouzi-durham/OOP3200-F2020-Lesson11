@@ -61,8 +61,8 @@ public class Mathf {
         return (float) (Math.atan2(y, x));
     }
 
-    public static float Sqrt(final float f) {
-        return (float) (Math.sqrt(f));
+    public static double Sqrt(final double f) {
+        return (double) (Math.sqrt(f));
     }
 
     public static float Abs(final float f) {
